@@ -13,8 +13,8 @@ RUN mkdir /var/run/sshd
 RUN printf admin\\nadmin\\n | passwd
 
 # Install postgresql
-RUN apt-get install -y postgresql; \
-	su - postgres -c "psql -U postgres -d postgres -c \"alter user postgres with password 'postgres';\""
+RUN apt-get install -y postgresql;
+#\su - postgres -c "psql -U postgres -d postgres -c \"alter user postgres with password 'postgres';\""
 
 RUN sed -i "s/#listen_addresses = 'localhost'/listen_addresses = '*'/g" /etc/postgresql/9.1/main/postgresql.conf
 RUN echo 'host all all 0.0.0.0/0 md5' >> /etc/postgresql/9.1/main/pg_hba.conf
